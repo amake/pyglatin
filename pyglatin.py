@@ -1,6 +1,8 @@
 import sys
 import re
 
+SPLIT = r'\s|(?<=>)|(?=<[^>]*>)'
+SPLIT_PATTERN = re.compile(SPLIT)
 CONSONANTS = r'^(?P<pref>[bcdfghjklmnpqrstvwxyz]+)'
 CONSONANTS_PATTERN = re.compile(CONSONANTS, re.IGNORECASE)
 PUNCTUATION = (r'^(?P<pref>[^abcdefghijklmnopqrstuvwxyz]*)'
@@ -63,7 +65,7 @@ def ignoring_punctuation(word, op):
 
 
 def convert(src):
-    return ' '.join(convert_word(word) for word in src.split())
+    return ' '.join(convert_word(word) for word in SPLIT_PATTERN.split(src))
 
 
 def main():
