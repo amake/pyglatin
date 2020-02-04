@@ -67,7 +67,8 @@ def ignoring_punctuation(word, op):
 
 
 def convert(src):
-    return ' '.join(convert_word(word) for word in SPLIT_PATTERN.split(src))
+    return ' '.join(convert_word(word)
+                    for word in SPLIT_PATTERN.split(src) if word)
 
 
 def main():
