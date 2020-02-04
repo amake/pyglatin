@@ -33,7 +33,10 @@ def to_title(txt: str):
 
 
 def convert_word(word):
-    return ignoring_punctuation(word, piglatinize_word)
+    if word.isnumeric():
+        return word
+    else:
+        return ignoring_punctuation(word, piglatinize_word)
 
 
 def piglatinize_word(word):
