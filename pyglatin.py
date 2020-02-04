@@ -65,7 +65,7 @@ def convert(src):
 
 def main():
     args = sys.argv[1:]
-    srcs = args or [line.strip() for line in sys.stdin.readlines()]
+    srcs = args or (line.strip() for line in sys.stdin)
     for src in srcs:
         print(convert(src))
 
