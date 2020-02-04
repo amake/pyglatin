@@ -1,6 +1,8 @@
 import sys
 import re
 
+LATIN = r'[abcdefghijklmnopqrstuvwxyz]'
+LATIN_PATTERN = re.compile(LATIN, re.IGNORECASE)
 SPLIT = r'\s|(?<=>)|(?=<[^>]*>)'
 SPLIT_PATTERN = re.compile(SPLIT)
 CONSONANTS = r'^(?P<pref>[bcdfghjklmnpqrstvwxyz]+)'
@@ -35,7 +37,7 @@ def to_title(txt: str):
 
 
 def convert_word(word):
-    if word.isnumeric():
+    if not LATIN_PATTERN.search(word):
         return word
     else:
         return ignoring_punctuation(word, piglatinize_word)
